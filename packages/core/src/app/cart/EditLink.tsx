@@ -4,14 +4,16 @@ import { TranslatedString } from '@bigcommerce/checkout/locale';
 
 export interface EditLinkProps {
     className?: string;
-    url: string;
+    url?: string;
 }
 
-const EditLink: FunctionComponent<EditLinkProps> = ({ className, url }) => (
+const usmCartLink = 'https://spikes-shop-next.app.nonprod.usmobile.com/shopnext/cart';
+
+const EditLink: FunctionComponent<EditLinkProps> = ({ className }) => (
     <a
         className={className || 'cart-header-link'}
         data-test="cart-edit-link"
-        href={url}
+        href={usmCartLink}
         id="cart-edit-link"
         target="_top"
     >

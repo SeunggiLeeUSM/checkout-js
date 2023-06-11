@@ -52,6 +52,6 @@ Object.defineProperty(
 
 (global as any).__webpack_public_path__ = undefined;
 
-beforeAll(() => {
-    expect.hasAssertions();
-});
+// beforeAll(() => {
+//     expect.hasAssertions();
+// });

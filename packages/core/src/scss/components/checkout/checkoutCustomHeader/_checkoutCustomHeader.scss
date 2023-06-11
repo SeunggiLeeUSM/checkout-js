@@ -1,36 +1,37 @@
 // =============================================================================
-// CHECKOUT HEADER (Component)
+// CHECKOUT CUSTOM HEADER (Component)
 // =============================================================================
 
-.checkoutHeader {
-    background-color: container("fill", "dark");
-    border-bottom: container("border");
-    text-align: center;
-    display: none;
+.customHeader {
+  background-color: container('fill', 'dark');
+  border-bottom: container('border');
+  text-align: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1.7rem 2rem;
 
-    @include breakpoint("small") {
-        min-height: remCalc(120px);
-    }
-
-    @include breakpoint("medium") {
-        text-align: left;
-    }
+  //@include breakpoint('small') {
+  //  min-height: remCalc(120px);
+  //}
+  //
+  //@include breakpoint('medium') {
+  //  text-align: left;
+  //}
 }
 
-.checkoutHeader-content {
-    @include grid-row;
-
-    padding: spacing("single");
-
-    @include breakpoint("small") {
-        padding: spacing("double");
-    }
+.customHeaderWrapper {
+  display: flex;
+  max-width: 88rem;
+  width: 100%;
 }
 
-.checkoutHeader-heading {
-    @include headingStyle("h1");
+.customHeaderHeading {
+  @include headingStyle('h1');
 
-    color: inherit;
-    margin-bottom: 0;
-    word-wrap: break-word;
+  //font-size: 42px !important;
+  color: inherit;
+  font-weight: bold;
+  margin-bottom: 0;
+  word-wrap: break-word;
 }

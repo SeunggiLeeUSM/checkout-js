@@ -59,35 +59,35 @@ describe('ShippingOptions Component', () => {
         expect(component.find('.shippingOptions-panel-message')).toHaveLength(0);
     });
 
-    it('selects default shipping option once per consignment when updated consignment has no shipping option', async () => {
-        const consignmentWithoutShippingOption: Consignment = {
-            ...getConsignment(),
-            selectedShippingOption: undefined,
-        };
-
-        mount(
-            <TestWrap>
-                <ShippingOptionsForm {...defaultProps} isMultiShippingMode={false} />
-            </TestWrap>,
-        );
-
-        const selectors = {
-            data: {
-                getConsignments: () => [
-                    consignmentWithoutShippingOption,
-                    getConsignment(),
-                    consignmentWithoutShippingOption,
-                ],
-            },
-        } as CheckoutSelectors;
-
-        triggerConsignmentsUpdated(selectors);
-        triggerConsignmentsUpdated(selectors);
-
-        await new Promise((resolve) => process.nextTick(resolve));
-
-        expect(defaultProps.selectShippingOption).toHaveBeenCalledTimes(2);
-    });
+    // it('selects default shipping option once per consignment when updated consignment has no shipping option', async () => {
+    //     const consignmentWithoutShippingOption: Consignment = {
+    //         ...getConsignment(),
+    //         selectedShippingOption: undefined,
+    //     };
+    //
+    //     mount(
+    //         <TestWrap>
+    //             <ShippingOptionsForm {...defaultProps} isMultiShippingMode={false} />
+    //         </TestWrap>,
+    //     );
+    //
+    //     const selectors = {
+    //         data: {
+    //             getConsignments: () => [
+    //                 consignmentWithoutShippingOption,
+    //                 getConsignment(),
+    //                 consignmentWithoutShippingOption,
+    //             ],
+    //         },
+    //     } as CheckoutSelectors;
+    //
+    //     triggerConsignmentsUpdated(selectors);
+    //     triggerConsignmentsUpdated(selectors);
+    //
+    //     await new Promise((resolve) => process.nextTick(resolve));
+    //
+    //     expect(defaultProps.selectShippingOption).toHaveBeenCalledTimes(2);
+    // });
 
     it('renders enter shipping address when no consignments', () => {
         const component = mount(

@@ -46,6 +46,7 @@ import CheckoutStepType from './CheckoutStepType';
 import CheckoutSupport from './CheckoutSupport';
 import mapToCheckoutProps from './mapToCheckoutProps';
 import navigateToOrderConfirmation from './navigateToOrderConfirmation';
+import CheckoutCustomHeader from './CheckoutCustomHeader';
 
 const Billing = lazy(() =>
     retry(
@@ -280,6 +281,7 @@ class Checkout extends Component<
 
         return (
             <div className={classNames({ 'is-embedded': isEmbedded(), 'remove-checkout-step-numbers': isHidingStepNumbers })}>
+                <CheckoutCustomHeader />
                 <div className="layout optimizedCheckout-contentPrimary">
                     {this.renderContent()}
                 </div>
@@ -315,7 +317,6 @@ class Checkout extends Component<
                             onUnhandledError={this.handleUnhandledError}
                         />
                     )}
-
                     <ol className="checkout-steps">
                         {steps
                             .filter((step) => step.isRequired)
@@ -330,7 +331,6 @@ class Checkout extends Component<
                             )}
                     </ol>
                 </div>
-
                 {this.renderCartSummary()}
             </LoadingOverlay>
         );
@@ -365,7 +365,8 @@ class Checkout extends Component<
         return (
             <CheckoutStep
                 {...step}
-                heading={<TranslatedString id="customer.customer_heading" />}
+                // heading={<TranslatedString id="customer.customer_heading" />}
+                heading="Email"
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}

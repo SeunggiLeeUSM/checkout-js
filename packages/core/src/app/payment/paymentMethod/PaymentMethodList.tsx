@@ -48,6 +48,8 @@ const PaymentMethodList: FunctionComponent<
         [methods, onSelect],
     );
 
+    const filteredMethods = methods.filter((method)=> method.id === 'affirm');
+
     return (
         <Checklist
             defaultSelectedItemId={values.paymentProviderRadio}
@@ -55,7 +57,7 @@ const PaymentMethodList: FunctionComponent<
             name="paymentProviderRadio"
             onSelect={handleSelect}
         >
-            {methods.map((method) => {
+            {filteredMethods.map((method) => {
                 const value = getUniquePaymentMethodId(method.id, method.gateway);
                 const showOnlyOnMobileDevices = get(
                     method,

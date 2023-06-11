@@ -6,6 +6,7 @@
     background-color: container("fill", "dark");
     border-bottom: container("border");
     text-align: center;
+    display: none;
 
     @include breakpoint("small") {
         min-height: remCalc(120px);

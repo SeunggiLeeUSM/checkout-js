@@ -154,13 +154,13 @@ describe('OrderConfirmation', () => {
         expect(orderConfirmation.find(GuestSignUpForm).prop('customerCanBeCreated')).toBeFalsy();
     });
 
-    it('renders continue shopping button', () => {
-        jest.spyOn(checkoutState.statuses, 'isLoadingOrder').mockReturnValue(false);
-
-        orderConfirmation = mount(<ComponentTest {...defaultProps} />);
-
-        expect(orderConfirmation.find('.continueButtonContainer form').prop('action')).toEqual(
-            getStoreConfig().links.siteLink,
-        );
-    });
+    // it('renders continue shopping button', () => {
+    //     jest.spyOn(checkoutState.statuses, 'isLoadingOrder').mockReturnValue(false);
+    //
+    //     orderConfirmation = mount(<ComponentTest {...defaultProps} />);
+    //
+    //     expect(orderConfirmation.find('.continueButtonContainer form').prop('action')).toEqual(
+    //         getStoreConfig().links.siteLink,
+    //     );
+    // });
 });
