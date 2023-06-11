@@ -3,11 +3,13 @@ import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { ObjectSchema } from 'yup';
 
 import { PaymentFormService } from '@bigcommerce/checkout/payment-integration-api';
+import { CheckboxFormField } from '@bigcommerce/checkout/ui';
 
 import { BraintreeAchBankAccountValues } from '../../validation-schemas';
 
 export interface MandateTextProps {
     getFieldValue: PaymentFormService['getFieldValue'];
+    setFieldValue: PaymentFormService['setFieldValue'];
     storeName?: string;
     outstandingBalance?: number;
     symbol?: string;
@@ -15,6 +17,8 @@ export interface MandateTextProps {
     validationSchema: ObjectSchema<{ [p: string]: any }>;
     language: LanguageService;
     updateMandateText: (mandateText: string) => void;
+    isInstrumentFeatureAvailable?: boolean;
+    onOrderConsentChange: (orderConsent: boolean) => void;
 }
 
 const MandateText: FunctionComponent<MandateTextProps> = ({
@@ -26,6 +30,9 @@ const MandateText: FunctionComponent<MandateTextProps> = ({
     validationSchema,
     language,
     updateMandateText,
+    isInstrumentFeatureAvailable,
+    onOrderConsentChange,
+    setFieldValue,
 }) => {
     const [shouldShowMandateText, setShouldShowMandateText] = useState(false);
 
@@ -82,17 +89,22 @@ const MandateText: FunctionComponent<MandateTextProps> = ({
 
     const mandateText = useMemo(() => {
         if (shouldShowMandateText && storeName && outstandingBalance) {
-            return language.translate('payment.braintreeach_mandate_text', {
-                storeName,
-                depositoryName: isBusiness
-                    ? businessNameValue
-                    : `${firstNameValue} ${lastNameValue}`,
-                routingNumber: routingNumberValue,
-                accountNumber: accountNumberValue,
-                outstandingBalance: `${symbol || ''}${outstandingBalance}`,
-                currentDate: new Date().toJSON().slice(0, 10),
-                accountType: accountTypeValue.toLowerCase(),
-            });
+            return language.translate(
+                isInstrumentFeatureAvailable
+                    ? 'payment.braintreeach_vaulting_mandate_text'
+                    : 'payment.braintreeach_mandate_text',
+                {
+                    storeName,
+                    depositoryName: isBusiness
+                        ? businessNameValue
+                        : `${firstNameValue} ${lastNameValue}`,
+                    routingNumber: routingNumberValue,
+                    accountNumber: accountNumberValue,
+                    outstandingBalance: `${symbol || ''}${outstandingBalance}`,
+                    currentDate: new Date().toJSON().slice(0, 10),
+                    accountType: accountTypeValue.toLowerCase(),
+                },
+            );
         }
 
         return '';
@@ -109,13 +121,30 @@ const MandateText: FunctionComponent<MandateTextProps> = ({
         accountNumberValue,
         symbol,
         accountTypeValue,
+        isInstrumentFeatureAvailable,
     ]);
 
     useEffect(() => {
         updateMandateText(mandateText);
     }, [mandateText, updateMandateText]);
 
-    return shouldShowMandateText ? <div className="mandate-text">{mandateText}</div> : null;
+    useEffect(() => {
+        onOrderConsentChange(!shouldShowMandateText);
+
+        return () => {
+            setFieldValue('orderConsent', false);
+        };
+    }, [onOrderConsentChange, setFieldValue, shouldShowMandateText]);
+
+    return shouldShowMandateText ? (
+        <div className="mandate-text" data-test="mandate-text">
+            <CheckboxFormField
+                labelContent={mandateText}
+                name="orderConsent"
+                onChange={onOrderConsentChange}
+            />
+        </div>
+    ) : null;
 };
 
 export default MandateText;

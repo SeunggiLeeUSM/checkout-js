@@ -4,6 +4,7 @@ import React, { PureComponent, ReactNode } from 'react';
 
 export interface StripeupeShippingAddressProps {
     methodId?: string;
+    formFields?: any;
     deinitialize(options?: ShippingRequestOptions): Promise<CheckoutSelectors>;
     initialize(options?: ShippingInitializeOptions): Promise<CheckoutSelectors>;
     onUnhandledError?(error: Error): void;
