@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { configurePublicPath } from '../common/bundler';
@@ -13,6 +13,9 @@ export default function renderOrderConfirmation({
     publicPath,
     ...props
 }: RenderOrderConfirmationOptions): void {
+    if (window) {
+        window.location.assign('https://spikes-shop-next.app.nonprod.usmobile.com/shopnext/shop')
+    }
     const configuredPublicPath = configurePublicPath(publicPath);
 
     // We want to use `require` here because we want to set up the public path

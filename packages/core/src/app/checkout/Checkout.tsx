@@ -39,6 +39,7 @@ import { hasSelectedShippingOptions, isUsingMultiShipping, StaticConsignment } f
 import { ShippingOptionExpiredError } from '../shipping/shippingOption';
 import { LazyContainer, LoadingNotification, LoadingOverlay } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
+import affirmScript from './affirmScript';
 
 import CheckoutStep from './CheckoutStep';
 import CheckoutStepStatus from './CheckoutStepStatus';
@@ -173,6 +174,21 @@ class Checkout extends Component<
     }
 
     async componentDidMount(): Promise<void> {
+
+        //affirm script
+        // const _affirm_config = {
+        //     public_api_key:  "SOQVO9220G8DX8S6",
+        //     script:          "https://cdn1-sandbox.affirm.com/js/v2/affirm.js"
+        // };
+        // // if (window && document) {
+        // //     // eslint-disable-next-line
+        // //     (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+        // // }
+
+        affirmScript();
+
+
+
         const {
             checkoutId,
             containerId,

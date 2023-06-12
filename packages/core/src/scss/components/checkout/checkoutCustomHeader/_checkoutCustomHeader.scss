@@ -3,13 +3,14 @@
 // =============================================================================
 
 .customHeader {
-  background-color: container('fill', 'dark');
+  //background-color: container('fill', 'dark');
   border-bottom: container('border');
   text-align: center;
   display: flex;
   align-content: center;
   justify-content: center;
-  padding: 1.7rem 2rem;
+  padding: 32px;
+  background-color: #EEF3FF;
 
   //@include breakpoint('small') {
   //  min-height: remCalc(120px);
@@ -24,6 +25,11 @@
   display: flex;
   max-width: 88rem;
   width: 100%;
+}
+
+.mainLogo {
+  //width: 172px;
+  //height:92px;
 }
 
 .customHeaderHeading {

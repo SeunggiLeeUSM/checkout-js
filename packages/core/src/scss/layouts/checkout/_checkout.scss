@@ -48,6 +48,13 @@
     }
 }
 
+
+.affirm-as-low-as {
+    margin-top: 15px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
 @media print {
     @page {
         margin: spacing("single") 0;
