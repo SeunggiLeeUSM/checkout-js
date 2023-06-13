@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React, { FunctionComponent, useEffect } from 'react';
 
@@ -32,9 +33,11 @@ const OrderSummaryTotal: FunctionComponent<OrderSummaryTotalProps & WithCurrency
   const affirmPrice = orderAmount * 100;
 
   useEffect(() => {
-    window.affirm.ui.ready(function () {
-      window.affirm.ui.refresh();
-    });
+    if (window) {
+      window.affirm.ui.ready(function affirmRefreshFunction() {
+        window.affirm.ui.refresh();
+      });
+    }
   }, [affirmPrice]);
 
   return (

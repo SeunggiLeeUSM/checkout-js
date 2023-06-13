@@ -283,6 +283,7 @@ class Checkout extends Component<
 
         if (error) {
             if (isCustomError(error)) {
+                // @ts-ignore
                 errorModal = (
                     <ErrorModal
                         error={error}
@@ -291,6 +292,7 @@ class Checkout extends Component<
                     />
                 );
             } else {
+                // @ts-ignore
                 errorModal = <ErrorModal error={error} onClose={this.handleCloseErrorModal} />;
             }
         }

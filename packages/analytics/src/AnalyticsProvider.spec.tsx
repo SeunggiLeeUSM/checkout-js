@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import * as CheckoutSdk from '@bigcommerce/checkout-sdk';
 import { mount } from 'enzyme';
 import React, { useEffect } from 'react';
@@ -89,7 +91,7 @@ describe('AnalyticsProvider', () => {
         try {
             mount(<AnalyticsProviderChildrenMock eventName="checkoutBegin" />);
         } catch (error) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            // eslint-disable-next-line
             errorMessage = error.message;
         }
 

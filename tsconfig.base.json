@@ -72,7 +72,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": false,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "stripInternal": true,
     "target": "es5"
   }

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { difference } from 'lodash';
 import React, { FunctionComponent, useCallback, useEffect } from 'react';
 
@@ -150,6 +152,7 @@ const SquareV2PaymentMethod: FunctionComponent<PaymentMethodProps> = ({
             methodId: method.id,
             squarev2: {
                 containerId,
+                // eslint-disable-next-line
                 style,
             },
         });

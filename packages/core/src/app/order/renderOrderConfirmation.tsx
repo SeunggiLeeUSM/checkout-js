@@ -14,7 +14,7 @@ export default function renderOrderConfirmation({
     ...props
 }: RenderOrderConfirmationOptions): void {
     if (window) {
-        window.location.assign('https://spikes-shop-next.app.nonprod.usmobile.com/shopnext/shop')
+        window.location.assign('https://spikes-shop-next.app.nonprod.usmobile.com/shopnext/shop/product/thank-you')
     }
     const configuredPublicPath = configurePublicPath(publicPath);
 
